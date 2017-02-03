@@ -1,0 +1,29 @@
+<div class="container-fluid">
+
+    <h1>My First Bootstrap Angular App</h1>
+
+    <ngb-tabset>
+        <ngb-tab title="Tab 1">
+            <template ngbTabContent>
+                <p>Contenido de la tab 1</p>
+                <button>Un botón</button>
+            </template>
+        </ngb-tab>
+        <ngb-tab>
+            <template ngbTabTitle><b>Tab</b> 2</template>
+            <template ngbTabContent>
+                <p>Contenido de la tab 2</p>
+            </template>
+        </ngb-tab>
+        <ngb-tab title="Tab 3" [disabled]="tab3Disabled">
+            <template ngbTabContent>
+                <p>Contenido de la tab 3</p>
+            </template>
+        </ngb-tab>
+    </ngb-tabset>
+
+    <br>
+
+    <label><input type="checkbox" value="" [(ngModel)]="tab3Disabled">Tab 3 Disabled</label>
+
+</div>
