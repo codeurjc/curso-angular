@@ -7,7 +7,7 @@ import { BooksService } from './books.service';
 })
 export class AppComponent {
 
-  private books: string[] = [];
+  books: string[] = [];
 
   constructor(private booksService: BooksService) { }
 

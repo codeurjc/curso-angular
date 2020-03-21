@@ -4,7 +4,7 @@ export class Book {
   constructor(public id: number, public title: string, public description: string) { }
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BookService {
 
   private books = [

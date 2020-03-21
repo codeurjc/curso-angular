@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import 'rxjs/Rx';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BooksService {
 
-  constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getBooks(title: string) {
+  getBooks(title: string): Observable<string[]> {
 
     let url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
 
-    return this.http.get(url).map(
-      response => this.extractTitles(response));
+    return this.httpClient.get(url).pipe(map(
+      response => this.extractTitles(response as any)));
   }
 
-  private extractTitles(response: Response) {
-    return response.json().items.map(book => book.volumeInfo.title)
+  private extractTitles(response) {
+    return response.items.map(book => book.volumeInfo.title)
   }
 }

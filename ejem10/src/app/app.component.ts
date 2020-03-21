@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,9 @@ import { Http } from '@angular/http';
 })
 export class AppComponent {
 
-  private books: string[] = [];
+  books: string[] = [];
 
-  constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) { }
 
   search(title: string) {
 
@@ -17,9 +17,9 @@ export class AppComponent {
 
     let url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
 
-    this.http.get(url).subscribe(
+    this.httpClient.get(url).subscribe(
       response => {
-        let data = response.json();
+        let data: any = response;
         for (var i = 0; i < data.items.length; i++) {
           let bookTitle = data.items[i].volumeInfo.title;
           this.books.push(bookTitle);

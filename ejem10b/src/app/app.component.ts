@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +7,9 @@ import { Http } from '@angular/http';
 })
 export class AppComponent {
 
-    constructor(private http: Http) { }
+    response: object;
+
+    constructor(private httpClient: HttpClient) { }
 
     newAnuncio(title: string) {
 
@@ -18,8 +20,8 @@ export class AppComponent {
             asunto : title
         }
 
-        this.http.post(url, anuncio).subscribe(
-            response => console.log(response),
+        this.httpClient.post(url, anuncio).subscribe(
+            response => this.response = response,
             error => console.error(error)
         );
     }

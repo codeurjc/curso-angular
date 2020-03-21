@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { BookListComponent } from './book-list.component';
 import { BookDetailComponent } from './book-detail.component';

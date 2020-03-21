@@ -24,6 +24,6 @@
 
 <div *ngFor="let elem of elems">{{elem.desc}}</div>
 
-<template ngFor let-elem [ngForOf]="elems">
+<ng-template ngFor let-elem [ngForOf]="elems">
     <li *ngIf="elem.check">{{elem.desc}}</li>
-</template>
+</ng-template>

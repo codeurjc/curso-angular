@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
 import { BooksService } from './books.service';
 
 @Component({
@@ -8,9 +7,9 @@ import { BooksService } from './books.service';
 })
 export class AppComponent {
 
-  private books: string[] = [];
+  books: string[] = [];
 
-  constructor(private http: Http, private service: BooksService) { }
+  constructor(private service: BooksService) { }
 
   search(title: string) {
 

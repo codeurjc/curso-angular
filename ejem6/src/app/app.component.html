@@ -21,9 +21,9 @@ Angular
 </span>
 <br>
 <ul>
-    <template ngFor let-item [ngForOf]="items">
+    <ng-template ngFor let-item [ngForOf]="items">
         <li *ngIf="item.selected">{{item.value}}</li>
-    </template>
+    </ng-template>
 </ul>
 
 <button (click)="change()">Change</button>
