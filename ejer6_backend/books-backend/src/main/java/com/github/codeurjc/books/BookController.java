@@ -1,6 +1,7 @@
 package com.github.codeurjc.books;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,11 +35,9 @@ public class BookController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Book> getBook(@PathVariable long id) {
 
-		log.info("Get book {}", id);
-
-		Book book = repository.findOne(id);
-		if (book != null) {
-			return new ResponseEntity<>(book, HttpStatus.OK);
+		Optional<Book> book = repository.findById(id);
+		if (book.isPresent()) {
+			return new ResponseEntity<>(book.get(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -56,8 +55,8 @@ public class BookController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Book> updateBook(@PathVariable long id, @RequestBody Book updatedBook) {
 
-		Book book = repository.findOne(id);
-		if (book != null) {
+		Optional<Book> book = repository.findById(id);
+		if (book.isPresent()) {
 
 			updatedBook.setId(id);
 			repository.save(updatedBook);
@@ -71,10 +70,10 @@ public class BookController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Book> deleteBook(@PathVariable long id) {
 
-		Book deletedBook = repository.findOne(id);
-		if (deletedBook != null) {
-			repository.delete(id);
-			return new ResponseEntity<>(deletedBook, HttpStatus.OK);
+		Optional<Book> deletedBook = repository.findById(id);
+		if (deletedBook.isPresent()) {
+			repository.deleteById(id);
+			return new ResponseEntity<>(deletedBook.get(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

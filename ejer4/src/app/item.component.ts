@@ -9,7 +9,7 @@ import { Item } from './item.model';
 export class ItemComponent {
 
 	@Input()
-	private item: Item;
+	item: Item;
 
 	@Output()
 	private remove = new EventEmitter<Item>();

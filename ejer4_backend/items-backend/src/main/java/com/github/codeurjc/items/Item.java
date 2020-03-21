@@ -25,7 +25,7 @@ public class Item {
 		this.description = description;
 	}
 
-	public boolean getChecked() {
+	public boolean isChecked() {
 		return checked;
 	}
 

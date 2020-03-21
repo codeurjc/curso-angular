@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 
 import { Item } from './item.model';
-import { ItemComponent } from './item.component';
 import { ItemsService } from './items.service';
 
 @Component({
@@ -11,9 +9,9 @@ import { ItemsService } from './items.service';
 })
 export class AppComponent implements OnInit {
 
-	private items: Item[] = [];
+	items: Item[] = [];
 
-	constructor(private http: Http, private itemsService: ItemsService) { }
+	constructor(private itemsService: ItemsService) { }
 
 	ngOnInit() {
 		this.refresh();
@@ -21,7 +19,7 @@ export class AppComponent implements OnInit {
 
 	private refresh() {
 		this.itemsService.getItems().subscribe(
-			items => this.items = items
+			items => this.items = items as Item[]
 		);
 	}
 

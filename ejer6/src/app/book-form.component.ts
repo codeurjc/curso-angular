@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { BooksService } from './books.service';
 import { Book } from './book.model';
@@ -30,7 +30,7 @@ export class BookFormComponent {
   newBook: boolean;
   book: Book;
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute, private service: BooksService) {
+  constructor(activatedRoute: ActivatedRoute, private service: BooksService) {
 
     let id = activatedRoute.snapshot.params['id'];
     if (id) {

@@ -1,39 +1,39 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { Item } from './item.model';
 
 const BASE_URL = 'http://127.0.0.1:8080/items/';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ItemsService {
 
-	constructor(private http: Http) { }
+	constructor(private httpClient: HttpClient) { }
 
-	getItems() {
-		return this.http.get(BASE_URL)
-			.map(response => response.json())
-			.catch(error => this.handleError(error));
+	getItems(): Observable<Item[]> {
+		return this.httpClient.get(BASE_URL).pipe(			
+			catchError(error => this.handleError(error))
+		) as Observable<Item[]>;
 	}
 
 	addItem(item: Item) {
-		return this.http.post(BASE_URL, item)
-			.map(response => response.json())
-			.catch(error => this.handleError(error));
+		return this.httpClient.post(BASE_URL, item).pipe(			
+			catchError(error => this.handleError(error))
+		);
 	}
 
 	removeItem(item: Item) {
-		return this.http.delete(BASE_URL + item.id)
-			.map(response => response.json())
-			.catch(error => this.handleError(error));
+		return this.httpClient.delete(BASE_URL + item.id).pipe(			
+			catchError(error => this.handleError(error))
+		);
 	}
 
 	updateItem(item: Item) {
-		return this.http.put(BASE_URL + item.id, item)
-			.map(response => response.json())
-			.catch(error => this.handleError(error));
+		return this.httpClient.put(BASE_URL + item.id, item).pipe(			
+			catchError(error => this.handleError(error))
+		);
 	}
 
 	private handleError(error: any) {

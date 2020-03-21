@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Item } from './item.model';
-import { ItemComponent } from './item.component';
 
 const BASE_URL = 'http://127.0.0.1:8080/items/';
 
@@ -12,17 +11,17 @@ const BASE_URL = 'http://127.0.0.1:8080/items/';
 })
 export class AppComponent implements OnInit {
 
-	private items: Item[] = [];
+	items: Item[] = [];
 
-	constructor(private http: Http) { }
+	constructor(private httpClient: HttpClient) { }
 
 	ngOnInit() {
 		this.refresh();
 	}
 
 	private refresh() {
-		this.http.get(BASE_URL).subscribe(
-			response => this.items = response.json(),
+		this.httpClient.get(BASE_URL).subscribe(
+			response => this.items = response as any,
 			error => this.handleError(error)
 		);
 	}
@@ -31,7 +30,7 @@ export class AppComponent implements OnInit {
 
 		let item = { description, checked: false };
 
-		this.http.post(BASE_URL, item).subscribe(
+		this.httpClient.post(BASE_URL, item).subscribe(
 			response => this.refresh(),
 			error => this.handleError(error)
 		);
@@ -39,7 +38,7 @@ export class AppComponent implements OnInit {
 
 	removeItem(item: Item) {
 
-		this.http.delete(BASE_URL + item.id).subscribe(
+		this.httpClient.delete(BASE_URL + item.id).subscribe(
 			response => this.refresh(),
 			error => this.handleError(error)
 		);
@@ -47,7 +46,7 @@ export class AppComponent implements OnInit {
 
 	updateItem(item: Item) {
 
-		return this.http.put(BASE_URL + item.id, item).subscribe(
+		return this.httpClient.put(BASE_URL + item.id, item).subscribe(
 			response => this.refresh(),
 			error => this.handleError(error)
 		);

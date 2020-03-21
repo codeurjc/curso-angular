@@ -9,7 +9,7 @@ import { ItemComponent } from './item.component';
 })
 export class AppComponent {
 
-	private items: Item[] = [];
+	items: Item[] = [];
 
 	addItem(description: string) {
 		this.items.push({ description, checked: false });
