@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { Item } from './item.model';
 
@@ -12,7 +12,7 @@ export class ItemsService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	getItems(): Observable<Item[]> {
+	getItems() {
 		return this.httpClient.get(BASE_URL).pipe(			
 			catchError(error => this.handleError(error))
 		) as Observable<Item[]>;
@@ -38,6 +38,6 @@ export class ItemsService {
 
 	private handleError(error: any) {
 		console.error(error);
-		return Observable.throw("Server error (" + error.status + "): " + error.text())
+		return throwError("Server error (" + error.status + "): " + error.text())
 	}
 }

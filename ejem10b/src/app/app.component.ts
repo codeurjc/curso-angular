@@ -1,28 +1,23 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { BooksService } from './books.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html'
+  selector: 'app-root',
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
 
-    response: object;
+  books: string[] = [];
 
-    constructor(private httpClient: HttpClient) { }
+  constructor(private service: BooksService) { }
 
-    newAnuncio(title: string) {
+  search(title: string) {
 
-        let url = "http://127.0.0.1:9001/anuncios/";
+    this.books = [];
 
-        let anuncio = {
-            nombre : title,
-            asunto : title
-        }
-
-        this.httpClient.post(url, anuncio).subscribe(
-            response => this.response = response,
-            error => console.error(error)
-        );
-    }
+    this.service.getBooks(title).subscribe(
+      books => this.books = books,
+      error => console.error(error)
+    );
+  }
 }

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
 	private refresh() {
 		this.itemsService.getItems().subscribe(
-			items => this.items = items as Item[]
+			items => this.items = items
 		);
 	}
 

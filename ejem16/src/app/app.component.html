@@ -2,28 +2,27 @@
 
     <h1>My First Bootstrap Angular App</h1>
 
-    <ngb-tabset>
-        <ngb-tab title="Tab 1">
-            <ng-template ngbTabContent>
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+            <a ngbNavLink>Tab 1</a>
+            <ng-template ngbNavContent>
                 <p>Contenido de la tab 1</p>
                 <button>Un botón</button>
             </ng-template>
-        </ngb-tab>
-        <ngb-tab>
-            <ng-template ngbTabTitle><b>Tab</b> 2</ng-template>
-            <ng-template ngbTabContent>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink><b>Tab</b> 2</a>
+            <ng-template ngbNavContent>
                 <p>Contenido de la tab 2</p>
             </ng-template>
-        </ngb-tab>
-        <ngb-tab title="Tab 3" [disabled]="tab3Disabled">
-            <ng-template ngbTabContent>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink>Tab 3</a>
+            <ng-template ngbNavContent>
                 <p>Contenido de la tab 3</p>
             </ng-template>
-        </ngb-tab>
-    </ngb-tabset>
-
-    <br>
-
-    <label><input type="checkbox" value="" [(ngModel)]="tab3Disabled">Tab 3 Disabled</label>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
 
 </div>

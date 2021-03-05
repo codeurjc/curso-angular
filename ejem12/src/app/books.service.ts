@@ -12,8 +12,9 @@ export class BooksService {
 
     let url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
 
-    return this.httpClient.get(url).pipe(map(
-      response => this.extractTitles(response as any)));
+    return this.httpClient.get(url).pipe(
+      map(response => this.extractTitles(response as any))
+    );
   }
 
   private extractTitles(response) {

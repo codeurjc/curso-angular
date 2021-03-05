@@ -13,31 +13,37 @@ export class BooksService {
 	constructor(private httpClient: HttpClient) { }
 
 	getBooks(): Observable<Book[]> {
-		return this.httpClient.get(BASE_URL).pipe(			
+		return this.httpClient.get(BASE_URL).pipe(
 			catchError(error => this.handleError(error))
-		) as Observable<Book[]>;	
+		) as Observable<Book[]>;
 	}
 
 	getBook(id: number | string): Observable<Book> {
-		return this.httpClient.get(BASE_URL + id).pipe(			
+		return this.httpClient.get(BASE_URL + id).pipe(
 			catchError(error => this.handleError(error))
 		) as Observable<Book>;
 	}
 
 	addBook(book: Book) {
-		return this.httpClient.post(BASE_URL, book).pipe(			
-			catchError(error => this.handleError(error))
-		);
+		if (!book.id) {
+			return this.httpClient.post(BASE_URL, book).pipe(
+				catchError(error => this.handleError(error))
+			);
+		} else {
+			return this.httpClient.put(BASE_URL+book.id, book).pipe(
+				catchError(error => this.handleError(error))
+			);
+		}
 	}
 
 	removeBook(book: Book) {
-		return this.httpClient.delete(BASE_URL + book.id).pipe(			
+		return this.httpClient.delete(BASE_URL + book.id).pipe(
 			catchError(error => this.handleError(error))
 		);
 	}
 
 	updateBook(book: Book) {
-		return this.httpClient.put(BASE_URL + book.id, book).pipe(			
+		return this.httpClient.put(BASE_URL + book.id, book).pipe(
 			catchError(error => this.handleError(error))
 		);
 	}

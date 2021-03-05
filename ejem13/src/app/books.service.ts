@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class BooksService {
@@ -15,7 +15,8 @@ export class BooksService {
 
     return this.httpClient.get(url).pipe(
       map(response => this.extractTitles(response as any)),
-      catchError(error => Observable.throw('Server error')));
+      catchError(error => throwError('Server error'))
+    );
   }
 
   private extractTitles(response) {
