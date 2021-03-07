@@ -2,14 +2,17 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 
-  items: String[] = [];
+  items: string[] = [];
+  fieldText: string; 
 
-  addContent(item: String){
-    this.items.push(item);
+  addItem() {
+    this.items.push(this.fieldText);
+    this.fieldText = '';
   }
 
 }

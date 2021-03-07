@@ -1,0 +1,13 @@
+<h1>My first Angular App</h1>
+
+<input #textInput type="text" >
+
+<button (click)="addContent(textInput.value); textInput.value=''">
+    Add Content
+</button>
+
+<ul>
+    <li *ngFor="let item of items">
+        {{item}}
+    </li>
+</ul>
