@@ -1,19 +1,16 @@
-<ion-content class="home">
-    <ion-list inset>
-        <ion-item>
-            <ion-label>Username</ion-label>
-            <ion-input type="text" [(ngModel)]="username" name="title"></ion-input>            
-        </ion-item>
-    </ion-list>
-    <div padding>
-        <button block (click)="getRepos()">Search</button>
-    </div>
-    <ion-card *ngFor="let repo of foundRepos" (click)="goToDetails(repo)">
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let elem of elems"
+        (click)="goToDetails(elem)">
         <ion-card-header>
-            {{ repo.name }}
+            {{ elem.name }}
         </ion-card-header>
-        <ion-card-content>
-            {{ repo.description }}
-        </ion-card-content>
     </ion-card>
 </ion-content>

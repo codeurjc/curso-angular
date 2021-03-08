@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{ repo.name }}
+      {{ elem.name }}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <div padding [innerHTML]="readme"></div>
+    <div padding>{{ elem.desc }}</div>
 </ion-content>

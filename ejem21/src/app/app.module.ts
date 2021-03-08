@@ -4,7 +4,6 @@ import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
 import { DetailsPage } from '../pages/details/details';
-import { GitHubService } from '../services/github';
 
 @NgModule({
   declarations: [
@@ -20,6 +19,6 @@ import { GitHubService } from '../services/github';
     MyApp,
     HomePage, DetailsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, GitHubService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

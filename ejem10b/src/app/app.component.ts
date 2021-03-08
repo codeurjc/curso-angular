@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BooksService } from './books.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +7,24 @@ import { BooksService } from './books.service';
 })
 export class AppComponent {
 
-  books: string[] = [];
+  titles: string[] = [];
 
-  constructor(private service: BooksService) { }
+  constructor(private httpClient: HttpClient) { }
 
   search(title: string) {
 
-    this.books = [];
+    this.titles = [];
 
-    this.service.getBooks(title).subscribe(
-      books => this.books = books,
+    let url = "/books/v1/volumes?q=intitle:" + title;
+
+    this.httpClient.get(url).subscribe(
+      response => {
+        let data: any = response;
+        for (var i = 0; i < data.items.length; i++) {
+          let bookTitle = data.items[i].volumeInfo.title;
+          this.titles.push(bookTitle);
+        }
+      },
       error => console.error(error)
     );
   }

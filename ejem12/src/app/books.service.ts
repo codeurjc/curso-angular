@@ -8,7 +8,7 @@ export class BooksService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBooks(title: string): Observable<string[]> {
+  getTitles(title: string): Observable<string[]> {
 
     let url = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + title;
 

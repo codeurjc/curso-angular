@@ -7,16 +7,16 @@ import { BooksService } from './books.service';
 })
 export class AppComponent {
 
-  books: string[] = [];
+  titles: string[] = [];
 
   constructor(private service: BooksService) { }
 
   search(title: string) {
 
-    this.books = [];
+    this.titles = [];
 
-    this.service.getBooks(title).subscribe(
-      books => this.books = books,
+    this.service.getTitles(title).subscribe(
+      titles => this.titles = titles,
       error => console.error(error)
     );
   }

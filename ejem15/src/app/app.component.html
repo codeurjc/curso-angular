@@ -1,3 +1,12 @@
-<h1>My First Angular 2 App</h1>
+<h1>Google Books</h1>
 
-<button type="button" class="btn btn-primary">Primary</button>
+<input #title type="text"><button (click)="search(title.value); title.value=''">Buscar</button>
+
+<div *ngIf="$titles | async as titles; else loading">
+    <p *ngFor="let title of titles">{{title}}</p>
+    <p>{{titles.length}} total books</p>
+</div>
+
+<ng-template #loading>
+    <p *ngIf="$titles !== undefined">Loading...</p>
+</ng-template>

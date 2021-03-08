@@ -1,30 +1,37 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { MaterialModule } from './material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppRouters } from './app.routes';
+import { DataService } from './data/data.service';
+import { AuthService } from './auth.service';
+import { PostDialogComponent } from './post-dialog/post-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    AppComponent,
+    WelcomeComponent,
+    DashboardComponent,
+    PostDialogComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FlexLayoutModule,
+    AppRouters,
+    FormsModule,
   ],
-  bootstrap: [IonicApp],
+  providers: [DataService, AuthService],
+  bootstrap: [AppComponent],
   entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+    PostDialogComponent
+  ]
 })
-export class AppModule {}
+export class AppModule { }

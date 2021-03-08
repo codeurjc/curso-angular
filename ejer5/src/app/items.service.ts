@@ -12,7 +12,7 @@ export class ItemsService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	getItems() {
+	getItems(): Observable<Item[]> {
 		return this.httpClient.get(BASE_URL).pipe(			
 			catchError(error => this.handleError(error))
 		) as Observable<Item[]>;
@@ -21,19 +21,19 @@ export class ItemsService {
 	addItem(item: Item) {
 		return this.httpClient.post(BASE_URL, item).pipe(			
 			catchError(error => this.handleError(error))
-		);
+		) as Observable<Item[]>;
 	}
 
 	removeItem(item: Item) {
 		return this.httpClient.delete(BASE_URL + item.id).pipe(			
 			catchError(error => this.handleError(error))
-		);
+		) as Observable<Item[]>;
 	}
 
 	updateItem(item: Item) {
 		return this.httpClient.put(BASE_URL + item.id, item).pipe(			
 			catchError(error => this.handleError(error))
-		);
+		) as Observable<Item[]>;
 	}
 
 	private handleError(error: any) {
