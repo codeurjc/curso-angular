@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Book } from './book.model';
@@ -24,16 +24,24 @@ export class BooksService {
 		) as Observable<Book>;
 	}
 
-	addBook(book: Book) {
+	addOrUpdateBook(book: Book) {
 		if (!book.id) {
-			return this.httpClient.post(BASE_URL, book).pipe(
-				catchError(error => this.handleError(error))
-			);
+			return this.addBook(book);
 		} else {
-			return this.httpClient.put(BASE_URL+book.id, book).pipe(
-				catchError(error => this.handleError(error))
-			);
+			return this.updateBook(book);
 		}
+	}
+
+	private addBook(book: Book) {
+		return this.httpClient.post(BASE_URL, book).pipe(
+			catchError(error => this.handleError(error))
+		);
+	}
+
+	private updateBook(book: Book) {
+		return this.httpClient.put(BASE_URL + book.id, book).pipe(
+			catchError(error => this.handleError(error))
+		);
 	}
 
 	removeBook(book: Book) {
@@ -42,14 +50,8 @@ export class BooksService {
 		);
 	}
 
-	updateBook(book: Book) {
-		return this.httpClient.put(BASE_URL + book.id, book).pipe(
-			catchError(error => this.handleError(error))
-		);
-	}
-
 	private handleError(error: any) {
 		console.error(error);
-		return Observable.throw("Server error (" + error.status + "): " + error.text())
+		return throwError("Server error (" + error.status + "): " + error.text())
 	}
 }

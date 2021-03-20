@@ -27,7 +27,6 @@ import { Book } from './book.model';
 })
 export class BookFormComponent {
 
-  newBook: boolean;
   book: Book;
 
   constructor(activatedRoute: ActivatedRoute, private service: BooksService) {
@@ -38,10 +37,8 @@ export class BookFormComponent {
         book => this.book = book,
         error => console.error(error)
       );
-      this.newBook = false;
     } else {
       this.book = { title: '', description: '' };
-      this.newBook = true;
     }
   }
 
@@ -50,7 +47,7 @@ export class BookFormComponent {
   }
 
   save() {
-    this.service.addBook(this.book).subscribe(
+    this.service.addOrUpdateBook(this.book).subscribe(
       book => { },
       error => console.error('Error creating new book: ' + error)
     );
