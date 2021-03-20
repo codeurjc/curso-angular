@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
 
-  $titles: Observable<string>;
+  $titles: Observable<string[]>;
 
   constructor(private service: BooksService) { }
 
