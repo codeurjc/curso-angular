@@ -21,19 +21,19 @@ export class ItemsService {
 	addItem(item: Item) {
 		return this.httpClient.post(BASE_URL, item).pipe(			
 			catchError(error => this.handleError(error))
-		) as Observable<Item[]>;
+		) as Observable<Item>;
 	}
 
 	removeItem(item: Item) {
 		return this.httpClient.delete(BASE_URL + item.id).pipe(			
 			catchError(error => this.handleError(error))
-		) as Observable<Item[]>;
+		) as Observable<Item>;
 	}
 
 	updateItem(item: Item) {
 		return this.httpClient.put(BASE_URL + item.id, item).pipe(			
 			catchError(error => this.handleError(error))
-		) as Observable<Item[]>;
+		) as Observable<Item>;
 	}
 
 	private handleError(error: any) {
