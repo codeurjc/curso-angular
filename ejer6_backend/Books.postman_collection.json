@@ -1,64 +1,18 @@
 {
 	"info": {
-		"_postman_id": "30e3a333-0299-440e-bd00-8839c7fdfb3e",
-		"name": "Items",
+		"_postman_id": "9d11e553-6036-43f7-9a13-704bb783e341",
+		"name": "Books",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET ITEMS",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8080/items/",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"items",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET ITEM",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://127.0.0.1:8080/items/1",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"items",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CREATE ITEM",
+			"name": "CREATE BOOK",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"description\": \"Milk\", \"checked\": false}",
+					"raw": "{ \"title\": \"Angular\", \"description\": \"Guía práctica\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -66,7 +20,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8080/items/",
+					"raw": "http://127.0.0.1:8080/books/",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -76,7 +30,7 @@
 					],
 					"port": "8080",
 					"path": [
-						"items",
+						"books",
 						""
 					]
 				}
@@ -84,13 +38,59 @@
 			"response": []
 		},
 		{
-			"name": "UPDATE ITEM",
+			"name": "GET BOOKS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/books/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BOOK",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/books/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE BOOK",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"description\": \"Milk\", \"checked\": true}",
+					"raw": "{ \"title\": \"Angular 11\", \"description\": \"Guía práctica\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -98,7 +98,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8080/items/3",
+					"raw": "http://127.0.0.1:8080/books/1",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -108,20 +108,20 @@
 					],
 					"port": "8080",
 					"path": [
-						"items",
-						"3"
+						"books",
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "DELETE ITEM",
+			"name": "DELETE BOOK",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8080/items/1",
+					"raw": "http://127.0.0.1:8080/books/9",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -131,8 +131,8 @@
 					],
 					"port": "8080",
 					"path": [
-						"items",
-						"1"
+						"books",
+						"9"
 					]
 				}
 			},
